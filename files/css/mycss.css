@@ -1,0 +1,19 @@
+tbody tr:hover{
+    font-weight: bold;
+}
+div#menu-right{
+    width: 20%;
+    padding: 0;
+    margin: 0 3px;
+}
+footer {
+    width: 100%;
+    background-color: #080808;
+    position: absolute;
+    bottom: 0;
+    height: 20px;
+    text-align: center;
+    color: #c0c0c0;
+}
+footer b{
+    color: #fff;}
