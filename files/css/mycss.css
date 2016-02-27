@@ -1,3 +1,20 @@
+input[type="text"] {
+    height:20px;
+    vertical-align:top;
+}
+.field_wrapper div{
+    margin-bottom:10px;
+}
+.add_button{
+    margin-top:10px;
+    margin-left:10px;
+    vertical-align: text-bottom;
+}
+.remove_button{
+    margin-top:10px;
+    margin-left:10px;
+    vertical-align: text-bottom;
+}
 tbody tr:hover{
     font-weight: bold;
 }

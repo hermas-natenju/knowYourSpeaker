@@ -9,42 +9,34 @@ if(isset($_POST['addspeaker'])){
     if(isset($_POST['name']) && !empty($_POST['name']) && isset($_POST['fname'])&&!empty($_POST['fname'])){
         $nom = htmlspecialchars(trim($_POST['name']));
         $prenom = $_POST['fname'];
+        $field_name_array = $_REQUEST['name'];
+        $field_fname_array = $_REQUEST['fname'];
         try{
             $db = new PDO('mysql:dbname=kys;host=localhost', 'root', '');
             $db->beginTransaction();
-            $prep = $db->prepare("INSERT INTO speaker VALUES('',:name, :fname)");
+            $prep = $db->prepare("INSERT INTO speaker(name, fname)  VALUES(:name, :fname)");
             $prep->execute(array(
-                    ':name' =>$nom,
-                    ':fname' => $prenom
+                    ':name' =>$field_name_array,
+                    ':fname' => $field_fname_array
                 )
             );
             $db->commit();
             echo '<div class="alert alert-success alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-                everything is <b>ok</b> <i><b>1</b></i> speaker added
-              </div>';
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <strong>success!</strong>
+</div>';
         }catch (PDOException $e){
             $db->rollBack();
-            echo $e->getMessage("could'n connect to database or insert data");
-            echo '<div class="alert alert-warning alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-                <p>everything is <b>ok</b> <i><b>1</b></i> speaker added</p>
-              </div>';
+            echo '<div class="alert alert-danger alert-dismissible" role="alert">
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <strong>ERROR!</strong>
+                  </div>';
         }
     }else{
         header("addSpeaker.php");
     }
 }
 
-echo '<div class="alert alert-info alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>';
 ?>
 <!doctype html>
 <html>
@@ -56,6 +48,27 @@ echo '<div class="alert alert-info alert-dismissible" role="alert">
 
     <script src="js/bootstrap.min.js"></script>
     <script src="js/npm.js"></script>
+    <script src="js/jquery.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var maxField = 10; //Input fields increment limitation
+            var addButton = $('.add_button'); //Add button selector
+            var wrapper = $('.field_wrapper'); //Input field wrapper
+            var fieldHTML = '<div><label><input type="text" name="name" placeholder="name" required></label> <label><input type="text" name="fname" placeholder="first name" required></label><a href="javascript:void(0);" class="remove_button" title="Remove field"><img src="remove-icon.png"/></a></div>'; //New input field html
+            var x = 1; //Initial field counter is 1
+            $(addButton).click(function(){ //Once add button is clicked
+                if(x < maxField){ //Check maximum number of input fields
+                    x++; //Increment field counter
+                    $(wrapper).append(fieldHTML); // Add field html
+                }
+            });
+            $(wrapper).on('click', '.remove_button', function(e){ //Once remove button is clicked
+                e.preventDefault();
+                $(this).parent('div').remove(); //Remove field html
+                x--; //Decrement field counter
+            });
+        });
+    </script>
 </head>
 <body>
 <header class="page-header">
@@ -88,10 +101,13 @@ echo '<div class="alert alert-info alert-dismissible" role="alert">
 </ol>
 
 <form method="post" action="addSpeaker.php">
-    <fieldset>
-        <label><input type="text" name="name" placeholder="name" required></label>
-        <label><input type="text" name="fname" placeholder="first name" required></label>
-    </fieldset>
+    <div class="field_wrapper">
+        <div>
+            <label><input type="text" name="name" placeholder="name" required></label>
+            <label><input type="text" name="fname" placeholder="first name" required></label>
+            <a href="javascript:void(0);" class="add_button" title="Add field"><img src="add-icon.png"/></a>
+        </div>
+    </div>
     <button type="submit" class="btn btn-primary" name="addspeaker">ADD</button>
 </form>
 

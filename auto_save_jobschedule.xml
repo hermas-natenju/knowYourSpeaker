@@ -24,7 +24,7 @@
 </objects>
 </database>
 </databases>
-<script compress="yes" fileordir="file" timestampdir="" timestamp="yes">E:\projets\knowYourSpeaker\kys.zip</script>
+<script compress="yes" fileordir="file" timestampdir="" timestamp="no">E:\projets\knowYourSpeaker\kys.zip</script>
 </export>
 <options>
 <createdb>yes</createdb>
@@ -46,6 +46,6 @@
 <bulksize>0</bulksize>
 <appendtofile>no</appendtofile>
 </options>
-<abortonerror>no</abortonerror>
+<abortonerror>yes</abortonerror>
 <sendreport send="no" /></exportjob>
 </job>
