@@ -9,17 +9,20 @@ if(isset($_POST['addspeaker'])){
     if(isset($_POST['name']) && !empty($_POST['name']) && isset($_POST['fname'])&&!empty($_POST['fname'])){
         $nom = htmlspecialchars(trim($_POST['name']));
         $prenom = $_POST['fname'];
-        $field_name_array = $_REQUEST['name'];
-        $field_fname_array = $_REQUEST['fname'];
+        $names = array_values($_REQUEST['name']);
+        $fnames = $_REQUEST['fname'];
         try{
             $db = new PDO('mysql:dbname=kys;host=localhost', 'root', '');
             $db->beginTransaction();
-            $prep = $db->prepare("INSERT INTO speaker(name, fname)  VALUES(:name, :fname)");
-            $prep->execute(array(
-                    ':name' =>$field_name_array,
-                    ':fname' => $field_fname_array
-                )
-            );
+            foreach ($names as $name_key => $name) {
+                foreach ($fnames as $fname_key => $fname) {
+                    $prep = $db->prepare("INSERT INTO speaker(name, fname)  VALUES(:name, :fname)");
+                    $prep->execute(array(
+                            ':name' => $name,
+                            ':fname' => $fname)
+                    );
+                }
+            }
             $db->commit();
             echo '<div class="alert alert-success alert-dismissible" role="alert">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -33,7 +36,7 @@ if(isset($_POST['addspeaker'])){
                   </div>';
         }
     }else{
-        header("addSpeaker.php");
+        header("speakers.php");
     }
 }
 
@@ -41,8 +44,7 @@ if(isset($_POST['addspeaker'])){
 <!doctype html>
 <html>
 <head>
-    <title>ADD SPEAKER</title>
-    <meta charset="utf-8">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/mycss.css">
 
@@ -89,7 +91,7 @@ if(isset($_POST['addspeaker'])){
             <ul class="nav navbar-nav" id="menu">
                 <li role="presentation"><a href="../index.php"><span class="glyphicon glyphicon-home"></span> Home</a></li>
                 <li role="presentation"><a href="interviews.php"><span class="glyphicon glyphicon-folder-open"></span> Interviews</a></li>
-                <li role="presentation" class="active"><a href="#"><span class="glyphicon glyphicon-plus"></span> add speaker</a></li>
+                <li role="presentation" class="active"><a href="#"><span class="glyphicon glyphicon-plus"></span> speakers</a></li>
                 <li role="presentation"><a href="newInterview.php"><span class="glyphicon glyphicon-plus"></span> new interview</a></li>
             </ul>
         </div>
@@ -99,8 +101,39 @@ if(isset($_POST['addspeaker'])){
     <li><a href="#">Home</a></li>
     <li class="active">add Speaker</li>
 </ol>
-
-<form method="post" action="addSpeaker.php">
+<?php
+include_once('dbConfig.php');
+$query = $db->query("SELECT * FROM speaker");
+?>
+<form name="bulk_action_form" action="action.php" method="post" onSubmit="return delete_confirm();">
+    <table class="bordered">
+        <thead>
+        <tr>
+            <th><label><input type="checkbox" name="select_all" id="select_all" value=""/></label></th>
+            <th>First Name</th>
+            <th>Last Name</th>
+        </tr>
+        </thead>
+        <?php
+        if ($db->exec($query) > 0) {
+            $rows = $query->fetchAll();
+            foreach ($rows as $row) {
+                ?>
+                <tr>
+                    <td align="center"><label><input type="checkbox" name="checked_id[]" class="checkbox" value="<?php echo $row['id_speaker']; ?>"/></label></td>
+                    <td><?php echo $row['fname']; ?></td>
+                    <td><?php echo $row['name']; ?></td>
+                </tr>
+            <?php }
+        } else { ?>
+            <tr>
+                <td colspan="5">No records found.</td>
+            </tr>
+        <?php } ?>
+    </table>
+    <input type="submit" class="btn btn-danger" name="bulk_delete_submit" value="Delete"/>
+</form>
+<form method="post" action="speakers.php">
     <div class="field_wrapper">
         <div>
             <label><input type="text" name="name" placeholder="name" required></label>

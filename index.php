@@ -31,7 +31,7 @@
             <ul class="nav navbar-nav" id="menu">
                 <li role="presentation" class="active"><a href="#"><span class="glyphicon glyphicon-home"></span> Home</a></li>
                 <li role="presentation"><a href="files/interviews.php"><span class="glyphicon glyphicon-folder-open"></span>  open Interview</a></li>
-                <li role="presentation"><a href="files/addSpeaker.php"><span class="glyphicon glyphicon-plus"></span> add speaker</a></li>
+                <li role="presentation"><a href="files/speakers.php"><span class="glyphicon glyphicon-plus"></span> Speakers</a></li>
                 <li role="presentation"><a href="files/newInterview.php"><span class="glyphicon glyphicon-plus"></span> new interview</a></li>
             </ul>
         </div>

@@ -1,3 +1,6 @@
+head title, ul#menu li a {
+    text-transform: uppercase;
+}
 input[type="text"] {
     height:20px;
     vertical-align:top;
