@@ -2,19 +2,30 @@
   <dictionary name="W8.1">
     <words>
       <w>addspeaker</w>
+      <w>autorisées</w>
       <w>autres</w>
+      <w>closebtn</w>
       <w>connecter</w>
       <w>dbname</w>
       <w>données</w>
       <w>essai</w>
+      <w>fieldset</w>
       <w>fname</w>
       <w>fnames</w>
+      <w>gethint</w>
+      <w>hermas</w>
+      <w>highcharts</w>
       <w>intervenants</w>
+      <w>liste</w>
+      <w>livesearch</w>
+      <w>multipart</w>
       <w>mycss</w>
       <w>objectif</w>
+      <w>onreadystatechange</w>
       <w>personnes</w>
       <w>prenom</w>
       <w>sexe</w>
+      <w>xmlhttp</w>
     </words>
   </dictionary>
 </component>

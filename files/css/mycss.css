@@ -1,12 +1,15 @@
 head title, ul#menu li a {
     text-transform: uppercase;
 }
-input[type="text"] {
-    height:20px;
-    vertical-align:top;
-}
-.field_wrapper div{
-    margin-bottom:10px;
+
+/*
+    input[type="text"] {
+        height:20px;
+        vertical-align:top;
+    }
+*/
+.field_wrapper div {
+    margin-bottom: 10px;
 }
 .add_button{
     margin-top:10px;
@@ -18,22 +21,77 @@ input[type="text"] {
     margin-left:10px;
     vertical-align: text-bottom;
 }
-tbody tr:hover{
-    font-weight: bold;
-}
-div#menu-right{
+
+#menu-right {
     width: 20%;
     padding: 0;
     margin: 0 3px;
 }
+
+.someone {
+    margin: 1.5%;
+    display: inline-block;
+    padding: 0 25px;
+    max-width: 190px;
+    height: 50px;
+    font-size: 16px;
+    line-height: 50px;
+    border-radius: 25px;
+    background-color: #F1F1F1;
+    overflow: hidden;
+    float: left;
+
+}
+
+.someone img {
+    float: left;
+    margin: 0 10px 0 -25px;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    border: none;
+}
+
+.closebtn {
+    padding-left: 10px;
+    color: #888888;
+    font-weight: bold;
+    float: right;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.closebtn:hover {
+    color: #000000;
+}
+
+fieldset legend {
+    text-align: center;
+}
+
+fieldset span {
+    display: block;
+}
+
+.form-fieldset {
+    margin-bottom: 20px;
+}
 footer {
     width: 100%;
     background-color: #080808;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     height: 20px;
     text-align: center;
     color: #c0c0c0;
 }
-footer b{
-    color: #fff;}
+
+footer b {
+    color: #FFFFFF;
+}
+
+#add-form {
+    overflow: hidden;
+    float: right;
+    margin: 0 1% 2% 0;
+}

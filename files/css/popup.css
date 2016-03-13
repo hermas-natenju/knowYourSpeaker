@@ -1,0 +1,40 @@
+/*
+the popup appear on the hover or focus of a link
+the structure is:
+<a href="=>
+    text_to_hover
+    <span> hover content </span>
+</a>
+it is applicable to other html elements since you change th parent selector
+*/
+div div.popup-msg {
+    position: absolute;
+    color: #0099CC;
+    background: rgba(0, 0, 0, .8);
+    padding: 15px;
+    border-radius: 3px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, .5);
+    opacity: 0;
+    /*Animation*/
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    -ms-transform: scale(0);
+    -o-transform: scale(0);
+    transform: scale(0);
+    -webkit-transition: all .30s;
+    -moz-transition: all .30s;
+    -ms-transition: all .30s;
+    -o-transition: all .30s;
+    transition: all .30s;
+}
+
+div:hover div, div:focus div {
+    opacity: 1;
+    /*Animation*/
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+    z-index: 1000;
+}

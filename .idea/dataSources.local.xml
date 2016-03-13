@@ -7,5 +7,11 @@
       <schema-pattern>kys.*</schema-pattern>
       <default-schemas>kys.*</default-schemas>
     </data-source>
+    <data-source name="MySQL - @localhost" uuid="7b0e4705-b510-44f6-81c8-35d377c7f63c">
+      <secret-storage>master_key</secret-storage>
+      <user-name>root</user-name>
+      <schema-pattern>world.*</schema-pattern>
+      <default-schemas>world.*</default-schemas>
+    </data-source>
   </component>
 </project>
