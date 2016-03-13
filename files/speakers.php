@@ -12,6 +12,8 @@
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
 
+    <title>Speakers</title>
+
     <script src="js/jquery.js"></script>
     <script src="js/npm.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -60,6 +62,7 @@
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/mycss.css">
+    <link rel="stylesheet" href="css/popup.css">
     <link rel="stylesheet" href="css/contacts.css">
 </head>
 <body>
@@ -104,8 +107,6 @@
     <button type="submit" class="btn btn-default" name="add_speaker">ADD</button>
 </form>
 <br>
-
-<button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Tooltip on left</button>
 
 <footer>Copyright &copy; TNH <b><?= date("Y"); ?></b></footer>
 </body>
